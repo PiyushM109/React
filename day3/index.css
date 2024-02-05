@@ -78,3 +78,15 @@
     border-radius: 10px;
     background-color: white;
 }
+
+.login{
+    padding:  2 20px;
+    cursor: pointer;
+}
+
+.filter{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 50px;
+    margin-right: 50px;
+}
