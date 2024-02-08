@@ -3,3 +3,5 @@ export const CDN_URL =
 
 export const LOGO_URL =
   "https://img.freepik.com/free-vector/lovely-pizza-delivery-man-scooter_23-2147681935.jpg?w=740&t=st=1706608416~exp=1706609016~hmac=7d1b5d61ac2721ee6117b052e1258e7287213387d13f4dd9f6bb5559b6afb0cb";
+
+export const MENU_API = "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=18.5204303&lng=73.8567437&restaurantId=";
