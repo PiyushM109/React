@@ -1,11 +1,10 @@
 import RestaurantCard from "./RestaurantCard";
-import restaurants from "../utils/mock_data";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
-
   const [resList, setResList] = useState([]);
   const [filteredResList, setFilteredResList] = useState([]);
   const [searchText, setSearchtext] = useState("");
@@ -30,9 +29,11 @@ const Body = () => {
     );
   };
 
-  // if(resList.length===0){
-  //   return <Shimmer />
-  // }
+  const onlineStatus = useOnlineStatus();
+
+  if(onlineStatus===false){
+    return <h1>Looks like you are offline check your internet connection</h1>
+  }
 
   return resList.length === 0 ? (
     <Shimmer />
@@ -63,7 +64,9 @@ const Body = () => {
         <button
           className="filter-btn"
           onClick={() =>
-            setFilteredResList(resList.filter((res) => res.info.avgRating >= "4.5"))
+            setFilteredResList(
+              resList.filter((res) => res.info.avgRating >= "4.5")
+            )
           }
         >
           Top Rated Restaurants
@@ -71,7 +74,13 @@ const Body = () => {
       </div>
       <div className="res-container">
         {filteredResList.map((restaurant) => (
-          <Link className="link"  key={restaurant.info.id} to={"/restaurant/"+restaurant.info.id}><RestaurantCard restaurant={restaurant} /></Link>
+          <Link
+            className="link"
+            key={restaurant.info.id}
+            to={"/restaurant/" + restaurant.info.id}
+          >
+            <RestaurantCard restaurant={restaurant} />
+          </Link>
         ))}
       </div>
     </div>
