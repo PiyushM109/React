@@ -39,30 +39,31 @@ const Body = () => {
     <Shimmer />
   ) : (
     <div className="body">
-      <div className="filter">
-        <div className="search">
+      <div className="filter flex justify-between items-center h-20 m-3">
+        <div className="search m-4 p-4">
           <input
             type="text"
-            className="search-box"
+            className="border  border-black"
             value={searchText}
             onChange={(e) => {
               setSearchtext(e.target.value);
             }}
-          ></input>
-          <button
+          ></input> 
+          <button className="px-4 py-1 bg-green-100 m-2 rounded-md"
             onClick={() => {
               const filtered = resList.filter((res) =>
                 res.info.name.toLowerCase().includes(searchText.toLowerCase())
               );
               setFilteredResList(filtered);
             }}
-            className="search-btn"
+            
           >
             search
           </button>
         </div>
-        <button
-          className="filter-btn"
+       <div>
+       <button
+          className="m-4 px-4 py-1 h-8 bg-green-100 rounded-md"
           onClick={() =>
             setFilteredResList(
               resList.filter((res) => res.info.avgRating >= "4.5")
@@ -71,6 +72,7 @@ const Body = () => {
         >
           Top Rated Restaurants
         </button>
+       </div>
       </div>
       <div className="res-container">
         {filteredResList.map((restaurant) => (
