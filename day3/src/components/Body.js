@@ -74,7 +74,7 @@ const Body = () => {
         </button>
        </div>
       </div>
-      <div className="res-container">
+      <div className="flex flex-wrap justify-evenly">
         {filteredResList.map((restaurant) => (
           <Link
             className="link"
