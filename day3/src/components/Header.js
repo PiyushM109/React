@@ -6,7 +6,7 @@ const Header = () => {
   const [btnName, setBtnName] = useState("Login");
 
   return (
-    <div className="flex h-20 justify-between drop-shadow-lg bg-slate-100 rounded-3xl">
+    <div className="m-2 flex h-20 justify-between drop-shadow-lg bg-slate-100 rounded-3xl">
       <div className="rounded-xl">
         <img className="w-20 h-20 rounded-3xl" src={LOGO_URL} />
       </div>

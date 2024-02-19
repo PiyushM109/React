@@ -3,6 +3,9 @@ import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import FilterBar from "./filterBar";
+import { RES_URL } from "../utils/constants";
+
 
 const Body = () => {
   const [resList, setResList] = useState([]);
@@ -15,7 +18,7 @@ const Body = () => {
 
   const fetchData = async () => {
     const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.5204303&lng=73.8567437&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+      RES_URL
     );
 
     const json = await data.json();
@@ -27,6 +30,7 @@ const Body = () => {
     setFilteredResList(
       json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
+    
   };
 
   const onlineStatus = useOnlineStatus();
@@ -34,46 +38,17 @@ const Body = () => {
   if(onlineStatus===false){
     return <h1>Looks like you are offline check your internet connection</h1>
   }
+  console.log(resList);
 
-  return resList.length === 0 ? (
-    <Shimmer />
+  return resList.length == 0 ? (
+    <div>
+      <FilterBar resList={resList} setFilteredResList={setFilteredResList} searchText={searchText} />
+      <Shimmer />
+    </div>
+    
   ) : (
     <div className="body">
-      <div className="filter flex justify-between items-center h-20 m-3">
-        <div className="search m-4 p-4">
-          <input
-            type="text"
-            className="border  border-black"
-            value={searchText}
-            onChange={(e) => {
-              setSearchtext(e.target.value);
-            }}
-          ></input> 
-          <button className="px-4 py-1 bg-green-100 m-2 rounded-md"
-            onClick={() => {
-              const filtered = resList.filter((res) =>
-                res.info.name.toLowerCase().includes(searchText.toLowerCase())
-              );
-              setFilteredResList(filtered);
-            }}
-            
-          >
-            search
-          </button>
-        </div>
-       <div>
-       <button
-          className="m-4 px-4 py-1 h-8 bg-green-100 rounded-md"
-          onClick={() =>
-            setFilteredResList(
-              resList.filter((res) => res.info.avgRating >= "4.5")
-            )
-          }
-        >
-          Top Rated Restaurants
-        </button>
-       </div>
-      </div>
+      <FilterBar resList={resList} setFilteredResList={setFilteredResList} searchText={searchText} />
       <div className="flex flex-wrap justify-evenly">
         {filteredResList.map((restaurant) => (
           <Link
