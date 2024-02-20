@@ -6,7 +6,7 @@ import useOnlineStatus from "../utils/useOnlineStatus";
 import FilterBar from "./filterBar";
 import { RES_URL } from "../utils/constants";
 
-
+ 
 const Body = () => {
   const [resList, setResList] = useState([]);
   const [filteredResList, setFilteredResList] = useState([]);
