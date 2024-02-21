@@ -1,9 +1,9 @@
-import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
 import { useState } from "react";
 import MenuHead from "./MenuHead";
 import MenuAccordion from "./MenuAccordion";
+import MenuShimmer from "./MenuShimmer";
 
 const RestaurantMenu = () => {
     const {resId} = useParams();
@@ -13,7 +13,7 @@ const RestaurantMenu = () => {
     console.log(resInfo?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
 
   if (resInfo == null) {
-    return <Shimmer />;
+    return <MenuShimmer />;
   }
   // c.card?.card?.["@type"]=="type.googleapis.com/swiggy.presentation.food.v2.NestedItemCategory"  ||
   const info =

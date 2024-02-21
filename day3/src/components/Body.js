@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
-import FilterBar from "./filterBar";
+import FilterBar from "./FilterBar";
 import { RES_URL } from "../utils/constants";
 
  
@@ -48,7 +48,7 @@ const Body = () => {
     
   ) : (
     <div className="body">
-      <FilterBar resList={resList} setFilteredResList={setFilteredResList} searchText={searchText} />
+      <FilterBar resList={resList} setFilteredResList={setFilteredResList} searchText={searchText} setSearchtext={setSearchtext} />
       <div className="flex flex-wrap justify-evenly">
         {filteredResList.map((restaurant) => (
           <Link

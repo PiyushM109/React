@@ -1,7 +1,7 @@
 import React from 'react'
 
 function FilterBar(props) {
-    const {resList,setFilteredResList,searchText} = props;
+    const {resList,setFilteredResList,searchText,setSearchtext} = props;
   return (
     <div><div className="filter flex justify-between items-center h-20 m-3">
     <div className="search m-4 p-4">
