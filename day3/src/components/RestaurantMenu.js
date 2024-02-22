@@ -10,7 +10,9 @@ const RestaurantMenu = () => {
     console.log(resId);
     const resInfo = useRestaurantMenu(resId);
     console.log(resInfo)
-    console.log(resInfo?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
+    // console.log(resInfo?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
+    const [showIndex, setShowIndex] = useState(0);
+
 
   if (resInfo == null) {
     return <MenuShimmer />;
@@ -25,9 +27,9 @@ const RestaurantMenu = () => {
     <div className="menu">
       <MenuHead data = {info}/>
       <ul>
-        {categories?.map((card) => (
+        {categories?.map((card,index) => (
           <li >
-            <MenuAccordion data={card?.card?.card} />
+            <MenuAccordion data={card?.card?.card} showItems={index===showIndex ? true : false} setShowIndex={()=>setShowIndex(index)} />
           </li>
         ))}
       </ul>

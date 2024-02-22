@@ -2,11 +2,12 @@ import { useState } from "react";
 import MenuList from "./MenuList";
 
 const MenuAccordion = (props) => {
-    const [showItems, setShowItems] = useState(false);
-    const handleClick = ()=>{
-        setShowItems(!showItems);
-    }
-  const { data } = props;
+  
+  const { data, showItems, setShowIndex} = props;
+
+  const handleClick = ()=>{
+    setShowIndex();
+  }
   // console.log(data);
   return (
     <div className="w-7/12 bg-neutral-50 my-4 mx-auto p-4 rounded-xl drop-shadow-md">

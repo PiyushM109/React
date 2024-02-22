@@ -1,9 +1,12 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { LOGO_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
+import UserContext from "../utils/userContext";
 
 const Header = () => {
   const [btnName, setBtnName] = useState("Login");
+
+  const data = useContext(useContext);
 
   return (
     <div className="m-2 flex h-20 justify-between drop-shadow-lg bg-slate-100 rounded-3xl">
