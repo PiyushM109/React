@@ -1,5 +1,12 @@
+import { useDispatch } from "react-redux";
+import { addItem } from "../utils/cartSlice";
+
 const MenuCard = (props) => {
   const { item } = props;
+  const dispatch = useDispatch();
+  const handleAddBtn = (item)=>{
+    dispatch(addItem(item))
+  }
   // console.log(item);
   return (
     <div className="m-2">
@@ -7,7 +14,7 @@ const MenuCard = (props) => {
         <div className="w-[70%]">
           <p className="font-bold">{item?.name}</p>
           <p className="font-extralight text-sm m-1">
-            ₹{item?.price != null ? item.price / 100 : item.defaultPrice / 100}
+            ₹{item?.price != null ? item?.price / 100 : item?.defaultPrice / 100}
           </p>
           <p className="font-extralight text-sm text-wrap">
             {item?.description}
@@ -24,13 +31,13 @@ const MenuCard = (props) => {
                 />
               </div>
               <div className="absolute h-[100%] -my-8 px-9">
-                <button className="bg-white py-1 px-4 font-mono text-green-500 rounded-lg hover:bg-slate-100">
+                <button className="bg-white py-1 px-4 font-mono text-green-500 rounded-lg hover:bg-slate-100" onClick={()=>handleAddBtn(item)}>
                   Add+
                 </button>
               </div>
             </div>
           ) : (
-            <button className="bg-white py-1 px-4 m-2 font-mono text-green-500 rounded-lg hover:bg-slate-100">
+            <button className="bg-white h-10 py-1 px-4 m-2 font-mono text-green-500 rounded-lg hover:bg-slate-100" onClick={()=>handleAddBtn(item)}>
               Add+
             </button>
           )}
